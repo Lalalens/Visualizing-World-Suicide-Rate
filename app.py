@@ -4,7 +4,7 @@ import psycopg2
 app = Flask(__name__)
 
 DB_HOST = 'localhost'
-DB_NAME = 'proj3'
+DB_NAME = 'suicide_vs_gdp'
 DB_USER = 'postgres'
 DB_PASSWORD = 'postgres'
 
@@ -17,6 +17,11 @@ def connect_db():
 @app.route('/')
 def index():
     return render_template('map.html')
+
+
+@app.route('/ShelontaClusterMap')
+def index2():
+    return render_template('shelonta_cluster.html')
 
 @app.route('/data')
 def data():
@@ -50,4 +55,4 @@ def data():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,port=8080)
