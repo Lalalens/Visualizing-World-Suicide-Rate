@@ -1,5 +1,5 @@
-# put api key(s) in file called config.py
-config.py
+# put api key(s) in file called config.js
+config.js
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
