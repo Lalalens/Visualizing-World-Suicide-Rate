@@ -8,7 +8,7 @@ CORS(app)
 DB_HOST = 'localhost'
 DB_NAME = 'proj3'
 DB_USER = 'postgres'
-DB_PASSWORD = 'charlie'
+DB_PASSWORD = 'postgres'
 
 
 def connect_db():
@@ -24,7 +24,6 @@ def index():
 def data():
     conn = connect_db()
     cur = conn.cursor()
-    #query = "SELECT s.country, s.year, s.hom, s.suicide_mortality_rate, s.gdp, s.income_level, c.lat, c.long FROM s_h_gdp s INNER JOIN country c ON s.country = c.name LIMIT 10;"
     query = "SELECT s.country, s.year, s.hom, s.suicide_mortality_rate, s.gdp, s.income_level, c.lat, c.long FROM s_h_gdp s INNER JOIN country c ON s.country = c.name;"
     cur.execute(query)
     geojson_data = {
