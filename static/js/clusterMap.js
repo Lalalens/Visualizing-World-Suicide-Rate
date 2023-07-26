@@ -22,4 +22,3 @@ d3.json(baseURL).then(function(data) {
   // Add our marker cluster layer to the map.
   map.addLayer(markers);
 });
-

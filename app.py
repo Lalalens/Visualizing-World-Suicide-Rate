@@ -1,12 +1,18 @@
 from flask import Flask, jsonify, render_template
 import psycopg2
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  # take environment variables from .env.
+
+API_KEY = os.getenv("apiKey")
 
 app = Flask(__name__)
 
-DB_HOST = 'localhost'
-DB_NAME = 'suicide_vs_gdp'
-DB_USER = 'postgres'
-DB_PASSWORD = 'postgres'
+DB_HOST = os.getenv("DB_HOST")
+DB_NAME = os.getenv("DB_NAME")
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
 
 
 def connect_db():
@@ -21,7 +27,7 @@ def index():
 
 @app.route('/ShelontaClusterMap')
 def index2():
-    return render_template('shelonta_cluster.html')
+    return render_template('shelonta_cluster.html', API_KEY=API_KEY)
 
 @app.route('/data')
 def data():

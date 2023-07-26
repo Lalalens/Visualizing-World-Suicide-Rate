@@ -41,7 +41,7 @@
   <body>
     <div id="map"></div>
     <script>
-      const apiKey = "AAPK938e41c0aee9466fb540efbf878a7d610namL_0IOj5jTJDDaPidwYMXEzAZwuPVcaaa4zCaDzKBz5Tg27hfkE9EtFULY8Ou";
+      const apiKey = "{{API_KEY}}";
 
       const map = L.map("map", {
         maxZoom: 18 
@@ -52,6 +52,7 @@
         apikey: apiKey
       }).addTo(map);
     </script>
-    <script src="static/js/app.js"></script>
+    <!-- <script src="/Shelonta/app.js"></script> -->
+    <script src="/static/js/clusterMap.js"></script>
   </body>
 </html>
