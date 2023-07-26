@@ -3,14 +3,27 @@
     <meta charset="utf-8" />
     <title>Display a basemap layer</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    
+    <!-- Leaflet Marker Cluster styles -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 
     <!-- Load Esri Leaflet from CDN -->
     <script src="https://unpkg.com/esri-leaflet@3.0.10/dist/esri-leaflet.js"></script>
-
+    
+    <!-- Load D3 Library -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    
     <!-- Load Esri Leaflet Vector from CDN -->
     <script src="https://unpkg.com/esri-leaflet-vector@4.1.0/dist/esri-leaflet-vector.js" crossorigin=""></script>
+    
+    <!-- Leaflet Marker Cluster script -->
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+
     <style>
       html,
       body,
@@ -38,15 +51,7 @@
       L.esri.Vector.vectorBasemapLayer("ArcGIS:Community", {
         apikey: apiKey
       }).addTo(map);
-
-      
-      L.esri.Cluster.featureLayer({
-        url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/Earthquakes_Since1970/MapServer/0"
-      }).addTo(map);
-
-    //   L.esri.Vector.vectorBasemapLayer("ArcGIS:Streets", {
-    //     apikey: apiKey
-    //   }).addTo(map);
     </script>
+    <script src="static/js/app.js"></script>
   </body>
 </html>
