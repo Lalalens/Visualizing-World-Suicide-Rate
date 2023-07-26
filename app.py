@@ -1,12 +1,14 @@
 from flask import Flask, jsonify, render_template
+from flask_cors import CORS
 import psycopg2
 
 app = Flask(__name__)
+CORS(app)
 
 DB_HOST = 'localhost'
 DB_NAME = 'proj3'
 DB_USER = 'postgres'
-DB_PASSWORD = 'postgres'
+DB_PASSWORD = 'charlie'
 
 
 def connect_db():
@@ -22,7 +24,8 @@ def index():
 def data():
     conn = connect_db()
     cur = conn.cursor()
-    query = "SELECT s.country, s.year, s.hom, s.suicide_mortality_rate, s.gdp, s.income_level, c.lat, c.long FROM s_h_gdp s INNER JOIN country c ON s.country = c.name LIMIT 10;"
+    #query = "SELECT s.country, s.year, s.hom, s.suicide_mortality_rate, s.gdp, s.income_level, c.lat, c.long FROM s_h_gdp s INNER JOIN country c ON s.country = c.name LIMIT 10;"
+    query = "SELECT s.country, s.year, s.hom, s.suicide_mortality_rate, s.gdp, s.income_level, c.lat, c.long FROM s_h_gdp s INNER JOIN country c ON s.country = c.name;"
     cur.execute(query)
     geojson_data = {
         "type": "FeatureCollection",
@@ -33,14 +36,20 @@ def data():
         country, year, hom, s_m_r, gdp, income, lat, long = row
         
         feature = {
-            "type": "Feature",
+             "type": "Feature",
             "properties": {
-                "name": country
+                "name": country,
+                "Year": year,
+                "homicide rate (per 100k)": hom,
+                "suicide rate (per 100k)": s_m_r,
+                "GDP": gdp,
+                "income level": income
             },
             "geometry": {
                 "type": "Point",
-                "coordinates": [lat, long]
+                "coordinates": [long, lat]
             }
+            
         }
         geojson_data["features"].append(feature)
 
