@@ -1,4 +1,4 @@
-let baseURL = "http://127.0.0.1:8080/data";
+let baseURL = "/data";
 
 d3.json(baseURL).then(function(data) {
   // Create a new marker cluster group.
