@@ -14,7 +14,7 @@ d3.json(baseURL).then(function(data) {
       // Add a new marker to the cluster group, and bind a popup.
       markers.addLayer(L.marker([parseFloat(location.coordinates[1]), parseFloat(location.coordinates[0])])
         .bindPopup("<b>" + data.features[i].properties.name + "</b><br>Suicide rate (per 100k): " 
-          + data.features[i].properties['suicide rate (per 100k)'] 
+          + data.features[i].properties['suicide_rate'] 
           + "<br>GDP: " + data.features[i].properties.GDP));
     }
   }
