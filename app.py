@@ -22,9 +22,9 @@ def connect_db():
     return conn
 
 
-@app.route('/')
+@app.route('/heatmap')
 def index():
-    return render_template('map.html')
+    return render_template('heatmap.html')
 
 
 @app.route('/ShelontaClusterMap')
