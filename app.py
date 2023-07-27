@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, render_template
+from flask_cors import CORS
 import psycopg2
 from dotenv import load_dotenv
 import os
@@ -8,6 +9,7 @@ load_dotenv()  # take environment variables from .env.
 API_KEY = os.getenv("apiKey")
 
 app = Flask(__name__)
+CORS(app)
 
 DB_HOST = os.getenv("DB_HOST")
 DB_NAME = os.getenv("DB_NAME")
@@ -33,7 +35,7 @@ def index2():
 def data():
     conn = connect_db()
     cur = conn.cursor()
-    query = "SELECT s.country, s.year, s.hom, s.suicide_mortality_rate, s.gdp, s.income_level, c.lat, c.long FROM s_h_gdp s INNER JOIN country c ON s.country = c.name LIMIT 100;"
+    query = "SELECT s.country, s.year, s.hom, s.suicide_mortality_rate, s.gdp, s.income_level, c.lat, c.long FROM s_h_gdp s INNER JOIN country c ON s.country = c.name;"
     cur.execute(query)
     geojson_data = {
         "type": "FeatureCollection",
@@ -44,7 +46,7 @@ def data():
         country, year, hom, s_m_r, gdp, income, lat, long = row
         
         feature = {
-            "type": "Feature",
+             "type": "Feature",
             "properties": {
                 "name": country,
                 "Year": year,
@@ -55,8 +57,9 @@ def data():
             },
             "geometry": {
                 "type": "Point",
-                "coordinates": [lat, long]
+                "coordinates": [long, lat]
             }
+            
         }
         geojson_data["features"].append(feature)
 
