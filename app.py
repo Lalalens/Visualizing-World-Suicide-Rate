@@ -22,14 +22,35 @@ def connect_db():
     return conn
 
 
-@app.route('/heatmap')
-def index():
-    return render_template('heatmap.html')
-
+@app.route('/')
+def welcome():
+    return (
+        f"Thank you for visiting our API on world suicide data! Please enjoy :)<br/>"
+        f"<br/>"
+        f"<br/>"
+        f"Available Routes:<br/>"
+        f"<br/>"
+        f"<br/>"
+        f"Cluster Map comparing average suicide rates and GDP: <a href='/ShelontaClusterMap'>ShelontaClusterMap</a><br/>"
+        f"<br/>"
+        f"Bar Chart comparing average suicide and homicide rate based on income level: <a href='/BarGraph'>BarGraph</a><br/>"
+        f"<br/>"
+        f"Heatmap showing the suicide rate per country: <a href='/HeatMap'>HeatMap</a><br/>"
+        f"<br/>"
+        f"General data: <a href='/data'>data</a><br/>"
+    )
 
 @app.route('/ShelontaClusterMap')
-def index2():
+def index1():
     return render_template('shelonta_cluster.html', API_KEY=API_KEY)
+
+@app.route('/BarGraph')
+def index2():
+    return render_template('BrettBarGraphs.html')
+
+@app.route('/HeatMap')
+def index3():
+    return render_template('heatmap.html')
 
 @app.route('/data')
 def data():
@@ -50,10 +71,10 @@ def data():
             "properties": {
                 "name": country,
                 "Year": year,
-                "homicide rate (per 100k)": hom,
-                "suicide rate (per 100k)": s_m_r,
+                "homicide_rate": hom,
+                "suicide_rate": s_m_r,
                 "GDP": gdp,
-                "income level": income
+                "income_level": income
             },
             "geometry": {
                 "type": "Point",
