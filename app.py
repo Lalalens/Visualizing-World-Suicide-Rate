@@ -8,7 +8,7 @@ CORS(app)
 DB_HOST = 'localhost'
 DB_NAME = 'proj3'
 DB_USER = 'postgres'
-DB_PASSWORD = 'postgres'
+DB_PASSWORD = 'charlie'
 
 
 def connect_db():
