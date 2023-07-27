@@ -28,8 +28,7 @@ def welcome():
         f"Thank you for visiting our API on world suicide data! Please enjoy :)<br/>"
         f"<br/>"
         f"<br/>"
-        f"Available Routes:<br/>"
-        f"<br/>"
+        f"<h1>Available Routes:</h1><br/>"
         f"<br/>"
         f"Cluster Map comparing average suicide rates and GDP: <a href='/ShelontaClusterMap'>ShelontaClusterMap</a><br/>"
         f"<br/>"
@@ -90,4 +89,4 @@ def data():
 
 
 if __name__ == '__main__':
-    app.run(debug=True,port=8080)
+    app.run(debug=True,port=5000)
